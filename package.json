@@ -2,6 +2,7 @@
     "name": "electron-app",
     "version": "1.0.0",
     "main": "test.js",
+    "type":"module",
     "scripts": {
         "start": "electron ."
     },

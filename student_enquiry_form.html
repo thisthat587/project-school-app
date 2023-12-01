@@ -313,23 +313,23 @@
             </div>
         </div>
     </div>
-    <script>
-        const submit = document.querySelector('.submit')
-        submit.addEventListener('click', function () {
-            const name = document.getElementById('name').value
-            const father = document.getElementById('fname').value;
-            const mobile = document.getElementById('mobile').value;
-            //console.log(name);
-            if (name) {
-                converttoJson(name, 0);
-            }
-            else if (father) {
-                converttoJson(father, 1);
-            }
-            else if (mobile) {
-                converttoJson(mobile, 2);
-            }
-        })
-    </script>
-    <script src="test.js"></script>
 </body>
+<script>
+    const submit = document.querySelector('.submit')
+    submit.addEventListener('click', function () {
+        const name = document.getElementById('name').value
+        const father = document.getElementById('fname').value;
+        const mobile = document.getElementById('mobile').value;
+        //console.log(name);
+        if (name) {
+            converttoJson(name, 0);
+        }
+        else if (father) {
+            converttoJson(father, 1);
+        }
+        else if (mobile) {
+            converttoJson(mobile, 2);
+        }
+    })
+</script>
+<script src="test.js"></script>
