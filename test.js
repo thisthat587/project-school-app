@@ -66,7 +66,6 @@ function getData(query1, flag, name, connection) {
           document.getElementById('notFound').innerHTML = "Data not found,Please Re-enter : ";
         } else {
           document.getElementById('notFound').innerHTML = "Click on your choice to see the Data";
-
         }
       }
       else if (flag === 1) {
@@ -125,7 +124,7 @@ function showData(matchedList, connection) {
   var rows = document.querySelectorAll('table tr');
   rows.forEach(function (row, i) {
     row.addEventListener('click', function () {
-      dashboard(matchedList, connection,i);
+      dashboard(matchedList, connection, i);
       // var dashboard = document.getElementById('dashboard').style.display = '';
       // var data = document.getElementById('data').style.display = 'none';
       // var form = document.querySelector(".form").style.display = 'none';
@@ -147,19 +146,19 @@ function showData(matchedList, connection) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-function dashboard(matchedList, connection,i) {
+function dashboard(matchedList, connection, i) {
   var dashboard = document.getElementById('dashboard').style.display = '';
   var data = document.getElementById('data').style.display = 'none';
   var form = document.querySelector(".form").style.display = 'none';
   const tableContainer = document.getElementById('table-container').style.display = 'none';
   var profile = document.getElementById('profile');
-  profile.addEventListener('click', function(){
-    showProfile(matchedList,connection,i)
+  profile.addEventListener('click', function () {
+    showProfile(matchedList, connection, i)
   });
-    
+
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-function showProfile(matchedList,connection,i) {
+function showProfile(matchedList, connection, i) {
   var dashboard = document.getElementById('dashboard').style.display = 'none';
   var data = document.getElementById('data').style.display = '';
   var form = document.querySelector(".form").style.display = 'none';
@@ -178,7 +177,7 @@ function showProfile(matchedList,connection,i) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
 function getAndShowTransDetail(matchedList, connection) {
-  const data = document.getElementById('data').style.display = '';
+  // const data = document.getElementById('data').style.display = '';
   connection.connect((err) => {
     if (err) {
       console.error('Error connecting to MySQL:', err);
@@ -222,6 +221,7 @@ function goBack() {
 }
 //////////////////////////////////////////////////////////////////////
 function goFirst() {
+  var dashboard = document.getElementById('dashboard').style.display = 'none';
   var form = document.querySelector(".form").style.display = '';
   const tableContainer = document.getElementById('table-container').style.display = 'none';
   const data = document.getElementById('data').style.display = 'none';

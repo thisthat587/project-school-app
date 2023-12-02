@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Image Loader</title>
+</head>
+<body>
+    <h1>Local Image Loader</h1>
+    <input type="file" id="fileInput" accept="image/*" multiple>
+    <div id="imageContainer"></div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const imageContainer = document.getElementById('imageContainer');
+            console.log(imageContainer);
+            imageContainer.innerHTML = ''; // Clear previous images
+
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = event.target.result;
+                        imgElement.alt = 'Image';
+                        imageContainer.appendChild(imgElement);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
