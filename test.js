@@ -3,17 +3,21 @@ const { app, BrowserWindow } = require('electron');
 const { json } = require('express');
 const { table, log } = require('console');
 const mysql = require('mysql2');
-function createWindow() {
+const getdata = require("./get-image.js");
+home = "home";
+module.exports = home;
+
+function createWindow(htmlfile, w, h) {
   const mainWindow = new BrowserWindow({
-    width: 375,
-    height: 667,
+    width: w,
+    height: h,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
       webSecurity: false
     },
   });
-  mainWindow.loadFile("test.html");
+  mainWindow.loadFile(htmlfile);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -43,9 +47,11 @@ function converttoJson(name, flag) {
     getData(query1, flag, name, connection);
   });
 }
+
 /////////////////////////////////////////////////////////////////////////////////
+
 function getData(query1, flag, name, connection) {
-  let matchedList = [];
+  var matchedList = [];
 
   connection.query(query1, (err, jsonData) => {
     if (err) {
@@ -155,6 +161,10 @@ function dashboard(matchedList, connection, i) {
   profile.addEventListener('click', function () {
     showProfile(matchedList, connection, i)
   });
+  let feeStatus = document.getElementById('feeStatus');
+  feeStatus.addEventListener('click', () => {
+    getdata(matchedList[i]);
+  })
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,4 +242,7 @@ function goFirst() {
     input.value = "";
   })
 }
-app.whenReady().then(createWindow);
+// app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  createWindow("test.html", 375, 667)
+});

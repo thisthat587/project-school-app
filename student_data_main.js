@@ -3,6 +3,8 @@ const { app, BrowserWindow } = require('electron');
 const { json } = require('express');
 const { table, log } = require('console');
 const mysql = require('mysql2');
+const receivedData = require("./test.js")
+console.log(receivedData);
 function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 375,
