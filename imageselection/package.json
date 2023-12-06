@@ -1,0 +1,14 @@
+{
+  "name": "imageselection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "get-image.js",
+  "scripts": {
+    "start":"electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "27.1.3"
+  }
+}
