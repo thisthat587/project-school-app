@@ -3,7 +3,7 @@ const { app, BrowserWindow } = require("electron");
 const { json } = require("express");
 // const { table, log } = require("console");
 const mysql = require("mysql2");
-const getdata = require("./render.js");
+const getdata = require("./anand1.js");
 
 function createWindow(htmlfile, w, h) {
     const mainWindow = new BrowserWindow({

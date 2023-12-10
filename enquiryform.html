@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="render.js"></script>
     <title>Enquiry-Form</title>
 </head>
 
@@ -23,7 +24,7 @@
                     <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile No.">
                 </tr><br>
                 <tr>
-                    <input type="submit" id="btnsubmit" name="btnsubmit" value="Search">
+                    <button id="searchstd" name="searchstd" class="btn btn-primary"><b>Search</b></button>
                 </tr>
             </table>
         </form>
@@ -31,19 +32,40 @@
 
     <div id="std-list">
         <form action="" method="" id="stdlist" name="stdlist" align="center">
-            <table class="table table-bordered" border="1">
+            <table class="table" border="1">
+                <tr class="table-danger">
+                    <td><b>SR.No.</b></td>
+                    <td><b>Name</b></td>
+                    <td><b>Father's Name</b></td>
+                    <td><b>Mobile No</b></td>
+                    <td></td>
+                </tr>
                 <tr class="table-primary">
-                    <td>Primary</td>
-                    <td>Joe</td>
-                    <td>joe@example.com</td>
-                    <td><i class="bi bi-arrow-right-square-fill"></i></td>
-                  </tr>
+                    <td>1</td>
+                    <td>shivam kumar</td>
+                    <td>Harilal kumar singh</td>
+                    <td>1234567890</td>
+                    <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 14 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+                        </svg>
+                    </td>
+                </tr>
                 <tr class="table-primary">
-                    <td>Primary</td>
-                    <td>Joe</td>
-                    <td>joe@example.com</td>
-                    <td><a onclick=""></a></td>
-                  </tr>
+                    <td>2</td>
+                    <td>Shreya lata</td>
+                    <td>Harilal kumar singh</td>
+                    <td>1234567830</td>
+                    <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 14 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+                        </svg>
+                    </td>
+                </tr>
             </table>
         </form>
     </div>
