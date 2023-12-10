@@ -1,9 +1,11 @@
 //backup 'test.js' m hai...................................................
 const { app, BrowserWindow } = require("electron");
-const { json } = require("express");
+// const { json } = require("express");
 // const { table, log } = require("console");
+
 const mysql = require("mysql2");
-const getdata = require("./anand1.js");
+const Con = require('./anand1');
+let pay = new Con();
 
 function createWindow(htmlfile, w, h) {
     const mainWindow = new BrowserWindow({
@@ -176,10 +178,26 @@ function dashboard(matchedList, i) {
     feeStatus.addEventListener("click", refergetdata,{ once: true });
     
     function refergetdata(){
-        getdata(matchedList[i].admno);
+        write(matchedList[i].admno);
     }
 }
 
+// "ASIS192000020"
+// "ASIS192000067"
+// pay.setAdmission( "ASIS192000020" );
+// "ASIS192000020"
+// "ASIS192000067"
+function write(adm) {
+	var dashboard = (document.getElementById("dashboard").style.display = "none");
+	var form = (document.querySelector(".form").style.display = "none");
+	const tableContainer = (document.getElementById(
+		"table-container"
+	).style.display = "none");
+	const Data = (document.getElementById("data").style.display = "none");
+	const feeDetails=document.getElementById('fee-status').style.display='';
+	pay.setAdmission(adm);
+	// console.log(data)
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 function showProfile(matchedList, i) {
     console.log("hello from showprofile");
@@ -269,6 +287,8 @@ function goBack() {
 function goFirst() {
     var dashboard = (document.getElementById("dashboard").style.display = "none");
     var form = (document.querySelector(".form").style.display = "");
+    form.style.height='550';
+    form.style.widtht='400';
     const tableContainer = (document.getElementById(
         "table-container"
     ).style.display = "none");
@@ -284,5 +304,5 @@ function goFirst() {
 }
 // app.whenReady().then(createWindow);
 app.whenReady().then(() => {
-    createWindow("test.html", 375, 667);
+    createWindow("test.html", 414 ,736);
 });

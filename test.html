@@ -198,10 +198,10 @@
         }
 
         /* Default styles for table */
-        .table.table-borderless {
+        /* .table.table-borderless {
             overflow-x: auto;
-            /* Enable horizontal scrolling */
-        }
+            Enable horizontal scrolling
+        } */
 
         /* Media query for smaller screens */
         @media (max-width: 768px) {
@@ -212,6 +212,12 @@
                 -webkit-overflow-scrolling: touch;
                 /* Enable touch scrolling on iOS */
             }
+        }
+
+        input[type="checkbox"] {
+            height: 25px;
+            width: 20px;
+
         }
     </style>
 </head>
@@ -262,7 +268,7 @@
 
     </div>
 
-    <div class="form">
+    <div style="width: 400; height: 550;" class="form">
         <div class="title">Welcome</div>
         <hr>
         <div class="subtitle">Search by any one </div>
@@ -271,7 +277,7 @@
             <div class="cut"></div>
             <label for="firstname" class="placeholder">Student's Name</label>
         </div>
-        <h6 style="color: aliceblue;">____________________________________________
+        <h6 style="color: aliceblue;">________________________________________________________
             <hr>
         </h6>
         <div class="input-container ic2">
@@ -279,7 +285,7 @@
             <div class="cut"></div>
             <label for="lastname" class="placeholder">Father's Name</label>
         </div>
-        <h6 style="color: aliceblue;">____________________________________________
+        <h6 style="color: aliceblue;">________________________________________________________
             <hr>
         </h6>
         <div class="input-container ic2">
@@ -382,31 +388,40 @@
             </div>
         </div>
     </div>
-    <div style="display: none;" id="fee-status">
-        <div class="p-2 fixed-top bg-dark text-white text-center">
-            <h1>Student Fee Payment</h1>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <center>
+    <div style="display: none;  " id="fee-status">
+        <div class="student-profile py-4">
             <div class="container">
-                <div class="card mt-3 mb-3">
-                    <div class="card-body">
-                        <div class="mb-3" id="doc"></div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent text-center">
+                                <div class="p-2 fixed-top bg-dark text-white text-center">
+                                    <h1>Student Fee Payment</h1>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div class="container">
+                                    <div class="card mt-2 mb-1">
+                                        <div class="card-body">
+                                            <div class="mb-1" id="doc"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div class="fixed-bottom bg-primary text-white">
+                                    <h1 id="fee"></h1>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </center>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="card-footer fixed-bottom bg-dark text-white pt-3">
-            <br />
-            <h1 id="fee"></h1>
         </div>
     </div>
 </body>

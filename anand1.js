@@ -1,5 +1,4 @@
 const mysql = require( 'mysql' );
-println = console.log;
 class Con
 {
 	#conect;
@@ -36,10 +35,10 @@ class Con
 	#tbl_loc_query;
 	#tbl_hostelfee_query;
 	#tbl_monthfee_query;
-	constructor ( adm_no )
-	{
-		this.setAdmission( adm_no )
-	}
+	constructor()
+		{
+		}
+	
 	async setAdmission ( adm_no )
 	{
 		this.#conect = mysql.createConnection( {
@@ -137,7 +136,7 @@ class Con
 		if ( tempflag == 0 )
 		{
 			month = ` 
-				<table class="table table-borderless">
+				<table class="table table-border">
 					<thead>
 						<tr>
 							<th><h2>Month</h2></th>
@@ -186,7 +185,7 @@ class Con
 			if ( tempflag == 2 ) names = "Hostel";
 			if ( tempflag == 1 ) names = "Transport";
 			month = ` 
-				<table class="table table-borderless">
+				<table class="table table-borderless align="center"">
 					<thead>
 						<tr>
 							<th><h2>Month</h2></th>
@@ -280,7 +279,7 @@ class Con
 			</tr>`;
 			flag_dest = "YES"
 		} else flag_dest = "NO";
-		let alldisp = `<table class="table table-borderless">
+		let alldisp = `<table class="table table-borderless align="center"">
 						<thead>
 							<tr>
 								<th></th>
@@ -358,9 +357,8 @@ class Con
 			</table></div>`;
 		this.#total = 0;
 		document.getElementById( "doc" ).innerHTML = `${ alldisp }  ${ th }  ${ month }`;
-		document.getElementById( "fee" ).innerHTML = `<button type="button" class="btn btn-primary  btn-lg w-100   disabled"><h1>tableTotal Fee ₹${ this.#total
-			}.00  Pay Now</h1></button>
-			`;
+		document.getElementById( "fee" ).innerHTML = `<button type="button" class="btn btn-primary  btn-lg w-100   disabled"><h1>Total Fee ₹${ this.#total
+			}.00  Pay Now</h1></button>`;
 
 	}
 
@@ -462,8 +460,7 @@ class Con
 		}
 		if ( this.#total == 0 )
 			document.getElementById( "fee" ).innerHTML = `<button type="button" class="btn btn-primary  btn-lg w-100   disabled"><h1>Total Fee ₹${ this.#total
-				}.00  Pay Now</h1></button>
-		`;
+				}.00  Pay Now</h1></button>`;
 		else
 		{
 			document.getElementById( "fee" ).innerHTML = `<button type="button" class="btn btn-primary  btn-lg w-100  "><h1>Total Fee ₹${ this.#total
@@ -613,19 +610,6 @@ class Con
 	}
 }
 
-let pay = new Con();
-// "ASIS192000020"
-// "ASIS192000067"
-function getdata(data) {
-	var dashboard = (document.getElementById("dashboard").style.display = "none");
-	var form = (document.querySelector(".form").style.display = "none");
-	const tableContainer = (document.getElementById(
-		"table-container"
-	).style.display = "none");
-	const Data = (document.getElementById("data").style.display = "none");
-	const feeDetails=document.getElementById('fee-status').style.display='';
-	pay.setAdmission(data);
-	// console.log(data)
-}
-module.exports = getdata;
+
+module.exports = Con;
 // pay.setAdmission( "ASIS192000020" );

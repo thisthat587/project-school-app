@@ -1,7 +1,7 @@
 {
     "name": "electron-app",
     "version": "1.0.0",
-    "main": "electronapp.js",
+    "main": "test.js",
     "scripts": {
         "start": "electron ."
     },
@@ -16,7 +16,7 @@
         "jquery": "^3.7.1",
         "mongoose": "^8.0.2",
         "mysql": "^2.18.1",
-        "mysql2": "^3.6.1",
+        "mysql2": "^3.6.5",
         "sql": "^0.78.0",
         "vue": "^3.3.4",
         "vue-recaptcha": "^3.0.0-alpha.6",
