@@ -5,7 +5,7 @@ const path = require('path');
 // let XSTART = 244; // Starting X position
 const TOP = 130; // Fixed top position
 const WIDTH = 100; // Width of each column
-const HEIGHT = 370; // Height of the crop
+let HEIGHT = 370; // Height of the crop
 let left = 244;
 function cropImageIntoColumns(imagePath, numColumns, callback) {
     sharp(imagePath).metadata((err, metadata) => {
@@ -35,6 +35,7 @@ function cropImageIntoColumns(imagePath, numColumns, callback) {
                 left = 580;
             }
             else if (i === 4) {
+                // HEIGHT =160;
                 left = 755;
             }
             else if (i === 5) {

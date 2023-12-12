@@ -10,7 +10,7 @@
     <title>Enquiry-Form</title>
 </head>
 
-<body>
+<body style="">
     <div id="enquiry-div">
         <form id="enquiry-form" name="enquiry-form" action="" method="" align="center">
             <table>
@@ -24,13 +24,15 @@
                     <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile No.">
                 </tr><br>
                 <tr>
-                    <button id="searchstd" name="searchstd" class="btn btn-primary"><b>Search</b></button>
+                    <div class="d-grid">
+                        <button id="searchstd" name="searchstd" class="btn btn-primary btn-block"><b>Search</b></button>
+                    </div>
                 </tr>
             </table>
         </form>
     </div>
 
-    <div id="std-list">
+    <div id="std-list" style="display: none;">
         <form action="" method="" id="stdlist" name="stdlist" align="center">
             <table class="table" border="1">
                 <tr class="table-danger">
@@ -69,7 +71,12 @@
             </table>
         </form>
     </div>
-
 </body>
-
+<script>
+    const searchButton=document.getElementById('searchstd');
+    searchButton.addEventListener('click',()=>{
+        const name=document.getElementById('name').value;
+        console.log(name);
+    })
+</script>
 </html>

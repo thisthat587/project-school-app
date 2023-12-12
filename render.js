@@ -1,3 +1,2 @@
-const mysql= require('mysql2')
-
-const connection= mysql.cre
+const name=document.getElementById('name').value;
+console.log(name);
