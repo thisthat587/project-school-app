@@ -10,8 +10,9 @@
     <title>Enquiry-Form</title>
 </head>
 
-<body style="">
-    <div id="enquiry-div">
+<body>
+
+    <div style="display: block;" id="enquiry-div">
         <form id="enquiry-form" name="enquiry-form" action="" method="" align="center">
             <table>
                 <tr>
@@ -74,9 +75,9 @@
 </body>
 <script>
     const searchButton=document.getElementById('searchstd');
-    searchButton.addEventListener('click',()=>{
+    searchButton.addEventListener('click',function showname(){
         const name=document.getElementById('name').value;
-        console.log(name);
+        console.log(this.name);
     })
 </script>
 </html>
