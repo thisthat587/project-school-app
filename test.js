@@ -1,5 +1,5 @@
 //backup 'test.js' m hai...................................................
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow } = require('electron');
 // const { json } = require("express");
 // const { table, log } = require("console");
 

@@ -1,28 +1,47 @@
 const mysql = require('mysql2');
 require('dotenv').config();
-const searchBtn = document.getElementById('searchBtn');
-const stdname = document.getElementById('name');
-const fname = document.getElementById('fname');
-const mobile = document.getElementById('mobile');
+
+class Elements {
+    searchBtn = document.getElementById('searchBtn');
+    stdname = document.getElementById('name');
+    fname = document.getElementById('fname');
+    mobile = document.getElementById('mobile');
+
+}
 
 class Search {
     #inputValue;
-    #connection;
     #query;
+    connection;
+    constructor() {
+        document.getElementById('name').focus();
+        this.connection = mysql.createConnection({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_DATABASE,
+        });
+    }
 
-    constructor() { }
-
-    getinputValue(Value, flag) {
-        this.#connection = mysql.createConnection({
-            host: process.env.HOST,
-            user: process.env.USER,
-            password: process.env.PASSWORD,
-            database: process.env.DATABASE,
-        })
+    // async connectingMysql() {
+    //     try {
+    //         await new Promise((resolve, reject) => {
+    //             this.connection.connect((error) => {
+    //                 if (error) {
+    //                     reject(error);
+    //                 } else {
+    //                     console.log("Connected to mySql...");
+    //                     resolve();
+    //                 }
+    //             });
+    //         });
+    //     } catch (error) {
+    //         console.log("Some error Occured....", error);
+    //     }
+    // }
+    getinputValuetoSearch(Value, flag) {
         this.#inputValue = Value;
         console.log(this.#inputValue)
-
-
         if (flag === 0) {
             this.#query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND name=${this.#inputValue};`;
         } else if (flag === 1) {
@@ -30,43 +49,60 @@ class Search {
         } else if (flag === 2) {
             this.#query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND fmob=${this.#inputValue};`;
         }
+        // this.connectingMysql();
+        // this.getQuery();
     }
-    async sendinputValue() {
 
-        if (stdname.value) {
+
+    getQuery() {
+        // console.log(this.#query);
+        this.connection.query(this.#query, (error, results) => {
+            if (error) {
+                console.log("Some error occured...", error)
+                return;
+            }
+            if (results.length > 0) {
+                console.log("Result : BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBKHL.HIO;HBUJVHYVFUU");
+                console.log("Result : ", result);
+                document.getElementById('enquiry-form').innerHTML = `<h1>${results[0].name}</h1>`;
+
+            }
+        })
+    }
+    sendinputValuetoSearch = () => {
+        if (e.stdname.value) {
+            this.getinputValuetoSearch(e.stdname.value, 0);
+        }
+        else if (e.fname.value) {
             try {
-                await SearchObj.getinputValue(stdname.value, 0);
+                this.getinputValuetoSearch(e.fname.value, 1);
             } catch (error) {
                 console.log(error);
             }
         }
-        else if (fname.value) {
+        else if (e.mobile.value) {
             try {
-                await SearchObj.getinputValue(fname.value, 0);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        else if (mobile.value) {
-            try {
-                await SearchObj.getinputValue(mobile.value, 0);
+                this.getinputValuetoSearch(e.mobile.value, 2);
             } catch (error) {
                 console.log(error);
             }
         }
         else {
-            document.getElementById('enquiry-form').innerHTML += 'Please Input any value...';
-            document.getElementById('name').focus;
+            document.getElementById('enquiry-form').innerHTML += '<br><h4>Please Input any value...</h4>';
+            document.getElementById('name').addEventListener('click', reloadPage);
+            function reloadPage() {
+                window.location.reload();
+                document.getElementById('name').focus();
+            }
         }
     }
 }
+// SearchObj.getQuery();
+const SearchObj = new Search;
+const e = new Elements;
 
-searchBtn.addEventListener('click', SearchObj.sendinputValue)
-
-
-const SearchObj = new Search();
-
-
-
-
+function catchsearchBtn() {
+    SearchObj.sendinputValuetoSearch();
+    SearchObj.getQuery();
+}
 
