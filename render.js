@@ -23,6 +23,10 @@ class Search {
         });
     }
 
+    showStdlistDiv(){
+        document.getElementById('stdList-div').style.display='';
+        document.getElementById('enquiry-div').style.display='none';
+    }
     // async connectingMysql() {
     //     try {
     //         await new Promise((resolve, reject) => {
@@ -64,7 +68,7 @@ class Search {
             if (results.length > 0) {
                 console.log("Result : BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBKHL.HIO;HBUJVHYVFUU");
                 console.log("Result : ", result);
-                document.getElementById('enquiry-form').innerHTML = `<h1>${results[0].name}</h1>`;
+                document.getElementById('stdList-div').innerHTML = `<h3>${results[0].name}</h3>`;
 
             }
         })
@@ -102,7 +106,7 @@ const SearchObj = new Search;
 const e = new Elements;
 
 function catchsearchBtn() {
+    SearchObj.showStdlistDiv();
     SearchObj.sendinputValuetoSearch();
     SearchObj.getQuery();
 }
-
