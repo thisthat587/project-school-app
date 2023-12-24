@@ -287,8 +287,8 @@ function goBack() {
 function goFirst() {
     var dashboard = (document.getElementById("dashboard").style.display = "none");
     var form = (document.querySelector(".form").style.display = "");
-    form.style.height='550';
-    form.style.widtht='400';
+    // form.style.height='550';
+    // form.style.widtht='400';
     const tableContainer = (document.getElementById(
         "table-container"
     ).style.display = "none");
@@ -304,5 +304,5 @@ function goFirst() {
 }
 // app.whenReady().then(createWindow);
 app.whenReady().then(() => {
-    createWindow("test.html", 414 ,736);
+    createWindow("test.html", 375 ,667);
 });

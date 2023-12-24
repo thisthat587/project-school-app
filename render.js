@@ -1,109 +1,86 @@
 const mysql = require('mysql2');
-require('dotenv').config();
 
-class Elements {
-    searchBtn = document.getElementById('searchBtn');
-    stdname = document.getElementById('name');
-    fname = document.getElementById('fname');
-    mobile = document.getElementById('mobile');
+const searchBtn = document.getElementById('searchBtn');
+const stdname = document.getElementById('name');
+const fname = document.getElementById('fname');
+const mobile = document.getElementById('mobile');
+let inputValue;
+const connection = mysql.createConnection({
+    host: "89.117.188.154",
+    user: "u932299896_eduware",
+    password: "Webgen@220310",
+    database: "u932299896_sisdb",
+});
+let query = 'select * from tbl_admission';
+// getQuery();
+
+function showStdlistDiv() {
+    document.getElementById('stdList-div').style.display = '';
+    document.getElementById('enquiry-div').style.display = 'none';
 }
 
-const e = new Elements;
-class Search {
-    #inputValue;
-    #query;
-    #connection;
-    constructor() {
-        e.stdname.focus();
-        this.#connection = mysql.createConnection({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_DATABASE,
-        });
-    }
+function getinputValuetoSearch(Value, flag) {
 
-    showStdlistDiv() {
-        document.getElementById('stdList-div').style.display = '';
-        document.getElementById('enquiry-div').style.display = 'none';
-    }
-    // async connectingMysql() {
-    //     try {
-    //         await new Promise((resolve, reject) => {
-    //             this.connection.connect((error) => {
-    //                 if (error) {
-    //                     reject(error);
-    //                 } else {
-    //                     console.log("Connected to mySql...");
-    //                     resolve();
-    //                 }
-    //             });
-    //         });
-    //     } catch (error) {
-    //         console.log("Some error Occured....", error);
-    //     }
-    // }
-    getinputValuetoSearch(Value, flag) {
-        this.#inputValue = Value;
-        console.log(this.#inputValue)
-        if (flag === 0) {
-            this.#query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND name=${this.#inputValue};`;
-        } else if (flag === 1) {
-            this.#query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND fname=${this.#inputValue};`;
-        } else if (flag === 2) {
-            this.#query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND fmob=${this.#inputValue};`;
-        }
-        // this.connectingMysql();
-        this.getQuery();
-    }
+    inputValue = Value.toUpperCase();
 
+    console.log(inputValue)
 
-    getQuery() {
-        // console.log(this.#query);
-        this.#connection.query(this.#query, (error, results) => {
-            if (error) {
-                console.log("Some error occured...", error)
-                return;
-            }
-            if (results.length > 0) {
-                // console.log("Result : BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBKHL.HIO;HBUJVHYVFUU");
-                console.log("Result : ", result);
-            }
-        })
+    if (flag === 0) {
+        query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND name=?;`;
+    } else if (flag === 1) {
+        query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND fname=?;`;
+    } else if (flag === 2) {
+        query = `SELECT admno, name, fname, class, section, roll, fmob, session, active, transport FROM tbl_admission WHERE session = "2023-2024" AND active = 1 AND fmob=?;`;
     }
-    sendinputValuetoSearch = () => {
-        if (e.stdname.value) {
-            this.getinputValuetoSearch(e.stdname.value, 0);
+    getQuery();
+}
+
+function getQuery() {
+    connection.query(query, [inputValue], (error, results) => {
+        console.log(results);
+        if (error) {
+            console.log("Some error occured...", error)
+            return;
         }
-        else if (e.fname.value) {
-            try {
-                this.getinputValuetoSearch(e.fname.value, 1);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        else if (e.mobile.value) {
-            try {
-                this.getinputValuetoSearch(e.mobile.value, 2);
-            } catch (error) {
-                console.log(error);
-            }
+        if (results.length > 0) {
+            showStdlistDiv()
         }
         else {
             document.getElementById('enquiry-form').innerHTML += '<br><h4>Please Input any value...</h4>';
-            document.getElementById('name').addEventListener('click', reloadPage);
-            function reloadPage() {
-                window.location.reload();
-                document.getElementById('name').focus();
-            }
+        }
+        alert("Hello");
+    })
+}
+
+function sendinputValuetoSearch() {
+    if (stdname.value) {
+        getinputValuetoSearch(stdname.value, 0);
+    }
+    else if (fname.value) {
+        try {
+            getinputValuetoSearch(fname.value, 1);
+        } catch (error) {
+            console.log(error);
         }
     }
+    else if (mobile.value) {
+        try {
+            getinputValuetoSearch(mobile.value, 2);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    // else {
+    //     document.getElementById('enquiry-form').innerHTML += '<br><h4>Please Input any value...</h4>';
+    //     document.getElementById('name').addEventListener('click', reloadPage);
+    //     function reloadPage() {
+    //         window.location.reload();
+    //         document.getElementById('name').focus();
+    //     }
+    // }
 }
-// SearchObj.getQuery();
 
 function catchsearchBtn() {
-    const SearchObj = new Search;
-    SearchObj.showStdlistDiv();
-    SearchObj.sendinputValuetoSearch();
-    SearchObj.getQuery();
+    // getQuery();
+    sendinputValuetoSearch();
 }
