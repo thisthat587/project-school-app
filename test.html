@@ -3,8 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script src="test.js"></script>
     <title>Document</title>
     
@@ -56,23 +55,14 @@
 
     </div>
 
-    <div class="form">
-            <table>
-                <tr>
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Name">
-                </tr><br>
-                <tr>
-                    <input type="text" id="fname" class="form-control" name="fname" placeholder="Father's Name">
-                </tr><br>
-                <tr>
-                    <input type="text" id="mobile" class="form-control" name="mobile" placeholder="Mobile No.">
-                </tr><br>
-                <tr>
+    <div class="form"><br>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Name" autofocus>
+                    <br>
+                    <input type="text" id="fname" class="form-control" name="fname" placeholder="Father's Name"><br>
+                    <input type="text" id="mobile" class="form-control" name="mobile" placeholder="Mobile No."><br>
                     <div class="d-grid">
                         <button id="searchBtn" name="searchBtn" class="btn btn-primary"><b>Search</b></button>
                     </div>
-                </tr>
-            </table>
     </div>
     <!-- <div  class="form">
         <div class="title">Welcome</div>
@@ -129,7 +119,7 @@
                     <div class="col-lg-4">
                         <div class="card shadow-sm">
                             <div class="card-header bg-transparent text-center">
-                                <img class="profile_img" src="https://source.unsplash.com/600x300/?student"
+                                <img class="profile_img" src=""
                                     alt="student dp">
                             </div>
                             <div class="card-body">
@@ -193,41 +183,48 @@
                 </div>
             </div>
         </div>
+        <div class="d-grid">
+            <button type="button" id="pay-now" class="btn btn-primary btn-block" onclick="">Pay Now</button>
+          </div><br>
     </div>
-    <div style="display: none;  " id="fee-status">
-        <div class="student-profile py-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-transparent text-center">
-                                <div class="p-2 fixed-top bg-dark text-white text-center">
-                                    <h1>Student Fee Payment</h1>
+    <div style="display: none;" id="fee-status">
+        <div class="p-2 fixed-top bg-dark text-white ">
+            <h3 class="text-center fixed-top" >Student Fee Payment</h3>
+                <!-- <button class="btn btn-dark" id="back" onclick="dashboard()">
+                    <svg xmlns="http://www.w3.org/2000/svg" for="back" width="30" height="40" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                        <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1"/>
+                    </svg>
+                </button> -->
+        </div>
+        <br />
+        <button style="margin-top: 0px; " id="back" class="btn btn-primary" onclick="dashboard()"><i
+            class="fas fa-arrow-left"></i></button>
+            <br />
+            <br />
+            <br/>
+                <div class="container">
+                    <div class="card ">
+                        <div class="card-body" >
+                            </button>
+                            <center>
+                                <div class="mb-3" id="doc">
+                                    <div class="spinner-border text-dark" ></div>
                                 </div>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <div class="container">
-                                    <div class="card mt-2 mb-1">
-                                        <div class="card-body">
-                                            <div class="mb-1" id="doc"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <div class="fixed-bottom bg-primary text-white">
-                                    <h1 id="fee"></h1>
-                                </div>
-                            </div>
+                            </center>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <center>
+                <div class="fixed-bottom bg-primary text-white" id="fee">
+                    <button  type="button" class="btn btn-primary btn-block" id="paying"   disabled><h3>Total Fee ₹ 0.00 <br> Pay Now</h3></button>
+                </div>
+            </center>
         </div>
     </div>
 </body>

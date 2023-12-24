@@ -6,9 +6,9 @@ const { app, BrowserWindow } = require('electron');
 const mysql = require("mysql2");
 const Con = require('./anand1');
 let pay = new Con();
-
+let mainWindow=null;
 function createWindow(htmlfile, w, h) {
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: w,
         height: h,
         webPreferences: {
@@ -160,24 +160,23 @@ function dashboard(matchedList, i) {
     var dashboard = (document.getElementById("dashboard").style.display = "");
     var data = (document.getElementById("data").style.display = "none");
     var form = (document.querySelector(".form").style.display = "none");
-    const tableContainer = (document.getElementById(
-        "table-container"
-    ).style.display = "none");
-
+    const tableContainer = (document.getElementById("table-container").style.display = "none");
+    let feeStatus = document.getElementById("feeStatus");
     var profile = document.getElementById("profile");
+    const payNow = document.getElementById('pay-now');
+    profile.addEventListener("click", refershowProfile, { once: true });
 
-    profile.addEventListener("click", refershowProfile,{ once: true });
-
-    function refershowProfile(){
+    function refershowProfile() {
         showProfile(matchedList, i);
     }
 
+    document.getElementById('fee-status').style.display = 'none';
 
-    let feeStatus = document.getElementById("feeStatus");
+    feeStatus.addEventListener("click", refergetdata);
+    payNow.addEventListener('click', refergetdata);
 
-    feeStatus.addEventListener("click", refergetdata,{ once: true });
-    
-    function refergetdata(){
+    function refergetdata() {
+        document.getElementById("dashboard").style.display = "none";
         write(matchedList[i].admno);
     }
 }
@@ -187,20 +186,20 @@ function dashboard(matchedList, i) {
 // pay.setAdmission( "ASIS192000020" );
 // "ASIS192000020"
 // "ASIS192000067"
+
 function write(adm) {
-	var dashboard = (document.getElementById("dashboard").style.display = "none");
-	var form = (document.querySelector(".form").style.display = "none");
-	const tableContainer = (document.getElementById(
-		"table-container"
-	).style.display = "none");
-	const Data = (document.getElementById("data").style.display = "none");
-	const feeDetails=document.getElementById('fee-status').style.display='';
-	pay.setAdmission(adm);
-	// console.log(data)
+    var dashboard = (document.getElementById("dashboard").style.display = "none");
+    var form = (document.querySelector(".form").style.display = "none");
+    const tableContainer = (document.getElementById("table-container").style.display = "none");
+    const Data = (document.getElementById("data").style.display = "none");
+    const feeDetails = document.getElementById('fee-status').style.display = '';
+    pay.setAdmission(adm);
+    // console.log(data)
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 function showProfile(matchedList, i) {
-    console.log("hello from showprofile");
+    console.log("hello from showprofile", matchedList);
+    console.log("Value of i : ", i);
     var dashboard = (document.getElementById("dashboard").style.display = "none");
     var data = (document.getElementById("data").style.display = "");
     var form = (document.querySelector(".form").style.display = "none");
@@ -285,24 +284,27 @@ function goBack() {
 }
 //////////////////////////////////////////////////////////////////////
 function goFirst() {
-    var dashboard = (document.getElementById("dashboard").style.display = "none");
-    var form = (document.querySelector(".form").style.display = "");
-    // form.style.height='550';
-    // form.style.widtht='400';
-    const tableContainer = (document.getElementById(
-        "table-container"
-    ).style.display = "none");
-    const data = (document.getElementById("data").style.display = "none");
-    var list = document.getElementById("list");
-    list.remove();
-    var inputs = document.querySelectorAll(".input");
-    inputs.forEach(function (input) {
-        input.value = "";
-    });
-    document.getElementById("transport_fee").innerHTML = ``;
-    document.getElementById("destination").innerHTML = ``;
+    console.log(mainWindow);
+    mainWindow.location.reload();   
+     // var dashboard = (document.getElementById("dashboard").style.display = "none");
+    // var form = (document.querySelector(".form").style.display = "");
+    // // form.style.height='550';
+    // // form.style.widtht='400';
+    // const tableContainer = (document.getElementById(
+    //     "table-container"
+    // ).style.display = "none");
+    // const data = (document.getElementById("data").style.display = "none");
+    // var list = document.getElementById("list");
+    // list.remove();
+    // var inputs = document.querySelectorAll("input");
+    // inputs.forEach(function (input) {
+    //     input.value = "";
+    // });
+    // document.getElementById("transport_fee").innerHTML = ``;
+    // document.getElementById("destination").innerHTML = ``;
+    // document.getElementById('name').focus();
 }
 // app.whenReady().then(createWindow);
 app.whenReady().then(() => {
-    createWindow("test.html", 375 ,667);
+    createWindow("test.html", 375, 667);
 });
