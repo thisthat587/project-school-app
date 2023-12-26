@@ -1,14 +1,11 @@
-//backup 'test.js' m hai...................................................
 const { app, BrowserWindow } = require('electron');
-// const { json } = require("express");
-// const { table, log } = require("console");
-
 const mysql = require("mysql2");
-const Con = require('./anand1');
+const Con = require('./renderer');
+
 let pay = new Con();
-let mainWindow=null;
+
 function createWindow(htmlfile, w, h) {
-    mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         width: w,
         height: h,
         webPreferences: {
@@ -34,9 +31,7 @@ function converttoJson(name, flag) {
     document.getElementById("notFound").style.color = "black";
     var dashboard = (document.getElementById("dashboard").style.display = "none");
     var form = (document.querySelector(".form").style.display = "none");
-    const tableContainer = (document.getElementById(
-        "table-container"
-    ).style.display = "");
+    document.getElementById('spinner').style.display = '';
     name = name.toUpperCase();
     connection.connect((err) => {
         if (err) {
@@ -126,6 +121,8 @@ function createTable(matchedList) {
         row.innerHTML = `Name : ${matchedList[i].name}<br>Father's Name : ${matchedList[i].fname}<br>Mobile : ${matchedList[i].fmob}<br>_______________________________________`;
     }
     tableContainer.appendChild(newTable);
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById("table-container").style.display = "";
     showData(matchedList);
 }
 //////////////////////////////////////////////////////////////////////////////////////
@@ -133,23 +130,7 @@ function showData(matchedList) {
     var rows = document.querySelectorAll("table tr");
     rows.forEach(function (row, i) {
         row.addEventListener("click", function () {
-            // location.href='schooldashboard.html';
             dashboard(matchedList, i);
-            // var dashboard = document.getElementById('dashboard').style.display = '';
-            // var data = document.getElementById('data').style.display = 'none';
-            // var form = document.querySelector(".form").style.display = 'none';
-            // const tableContainer = document.getElementById('table-container').style.display = 'none';
-            // document.querySelector('.name').innerHTML = `<strong class="pr-1">Name :</strong>${matchedList[i].name}`;
-            // document.querySelector('.ftname').innerHTML = `<strong class="pr-1">Father's Name :</strong>${matchedList[i].fname}`;
-            // document.querySelector('.fmob').innerHTML = `<strong class="pr-1">Mobile :</strong>${matchedList[i].fmob}`;
-            // document.getElementById('admno').innerHTML = `${matchedList[i].admno}`
-            // document.getElementById('class').innerHTML = `${matchedList[i].class}`
-            // document.getElementById('section').innerHTML = `${matchedList[i].section}`
-            // document.getElementById('roll').innerHTML = `${matchedList[i].roll}`
-            // document.getElementById('session').innerHTML = `${matchedList[i].session}`
-            // document.getElementById('transport').innerHTML = `${matchedList[i].transport}`
-
-            // getAndShowTransDetail(matchedList[i], connection)
         });
     });
 }
@@ -176,25 +157,23 @@ function dashboard(matchedList, i) {
     payNow.addEventListener('click', refergetdata);
 
     function refergetdata() {
-        document.getElementById("dashboard").style.display = "none";
         write(matchedList[i].admno);
     }
 }
 
-// "ASIS192000020"
-// "ASIS192000067"
-// pay.setAdmission( "ASIS192000020" );
-// "ASIS192000020"
-// "ASIS192000067"
+////////////////////////////////////////////////////////////////////
 
 function write(adm) {
     var dashboard = (document.getElementById("dashboard").style.display = "none");
     var form = (document.querySelector(".form").style.display = "none");
     const tableContainer = (document.getElementById("table-container").style.display = "none");
     const Data = (document.getElementById("data").style.display = "none");
-    const feeDetails = document.getElementById('fee-status').style.display = '';
+    document.getElementById('spinner').style.display = '';
     pay.setAdmission(adm);
-    // console.log(data)
+    setTimeout(() => {
+        document.getElementById('spinner').style.display = 'none';
+        const feeDetails = document.getElementById('fee-status').style.display = '';
+    }, 1000);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 function showProfile(matchedList, i) {
@@ -284,27 +263,26 @@ function goBack() {
 }
 //////////////////////////////////////////////////////////////////////
 function goFirst() {
-    console.log(mainWindow);
-    mainWindow.location.reload();   
-     // var dashboard = (document.getElementById("dashboard").style.display = "none");
-    // var form = (document.querySelector(".form").style.display = "");
-    // // form.style.height='550';
-    // // form.style.widtht='400';
-    // const tableContainer = (document.getElementById(
-    //     "table-container"
-    // ).style.display = "none");
-    // const data = (document.getElementById("data").style.display = "none");
-    // var list = document.getElementById("list");
-    // list.remove();
-    // var inputs = document.querySelectorAll("input");
-    // inputs.forEach(function (input) {
-    //     input.value = "";
-    // });
-    // document.getElementById("transport_fee").innerHTML = ``;
-    // document.getElementById("destination").innerHTML = ``;
-    // document.getElementById('name').focus();
+    // location.reload();   
+    const form = (document.querySelector(".form").style.display = "");
+    const dashboard = (document.getElementById("dashboard").style.display = "none");
+    const tableContainer = (document.getElementById(
+        "table-container"
+    ).style.display = "none");
+    const data = (document.getElementById("data").style.display = "none");
+    var list = document.getElementById("list");
+    list.remove();
+    var inputs = document.querySelectorAll("input");
+    inputs.forEach(function (input) {
+        input.value = "";
+    });
+    document.getElementById("transport_fee").innerHTML = ``;
+    document.getElementById("destination").innerHTML = ``;
+    document.getElementById('name').focus();
+    form.style.height = '550';
+    form.style.width = '400';
 }
 // app.whenReady().then(createWindow);
 app.whenReady().then(() => {
-    createWindow("test.html", 375, 667);
+    createWindow("index.html", 375, 667);
 });
