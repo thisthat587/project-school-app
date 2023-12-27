@@ -145,6 +145,7 @@ function dashboard(matchedList, i) {
     let feeStatus = document.getElementById("feeStatus");
     var profile = document.getElementById("profile");
     const payNow = document.getElementById('pay-now');
+    
     profile.addEventListener("click", refershowProfile, { once: true });
 
     function refershowProfile() {
@@ -173,12 +174,10 @@ function write(adm) {
     setTimeout(() => {
         document.getElementById('spinner').style.display = 'none';
         const feeDetails = document.getElementById('fee-status').style.display = '';
-    }, 1000);
+    }, 4000);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 function showProfile(matchedList, i) {
-    console.log("hello from showprofile", matchedList);
-    console.log("Value of i : ", i);
     var dashboard = (document.getElementById("dashboard").style.display = "none");
     var data = (document.getElementById("data").style.display = "");
     var form = (document.querySelector(".form").style.display = "none");
@@ -252,14 +251,6 @@ function getAndShowTransDetail(matchedList) {
         }
     });
     // connection.end();
-}
-// ////////////////////////////////////////////////////////////////
-function goBack() {
-    var form = (document.querySelector(".form").style.display = "none");
-    const tableContainer = (document.getElementById(
-        "table-container"
-    ).style.display = "");
-    const data = (document.getElementById("data").style.display = "none");
 }
 //////////////////////////////////////////////////////////////////////
 function goFirst() {
